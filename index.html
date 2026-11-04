@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#172238">
+<title>Life in Nine — Les liens</title>
+<style>
+:root{--navy:#172238;--gold:#d5b16e;--cream:#f5f1e9;--muted:#718096}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#101827;color:#202a3b;font-family:system-ui,-apple-system,Segoe UI,sans-serif;display:grid;place-items:center;padding:16px}
+.app{width:min(900px,100%);background:var(--cream);border-radius:22px;overflow:hidden;box-shadow:0 24px 80px #0007}
+header{background:var(--navy);color:white;padding:18px 22px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:13px;letter-spacing:.2em;font-weight:800}.chapter{font-size:11px;color:var(--gold);letter-spacing:.1em;text-align:right}
+.hero{min-height:250px;padding:28px;display:flex;flex-direction:column;justify-content:end;color:white;background:linear-gradient(0deg,#101827ed,#10182720),linear-gradient(130deg,#627789,#b3a58c 55%,#344b5e)}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#f1d6a6;font-weight:700}.hero h1{font:clamp(30px,6vw,48px) Georgia,serif;margin:8px 0}.hero p{max-width:570px;line-height:1.6;margin:0;color:#eef1f4}
+main{display:grid;grid-template-columns:1fr 220px;gap:18px;padding:20px}
+.dialogue,.panel{background:white;border:1px solid #e7e0d5;border-radius:15px;padding:18px}
+.speaker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#987440;font-weight:800}
+#text{font-size:16px;line-height:1.75;margin:12px 0 18px;white-space:pre-line}
+.choices{display:grid;gap:9px}.choice{padding:12px 14px;text-align:left;border:1px solid #ddd6ca;border-radius:10px;background:#fcfbf8;color:#202a3b;font:inherit;cursor:pointer}.choice:hover{border-color:var(--gold);background:#fff8e9}
+.side{display:grid;align-content:start;gap:12px}.panel h2{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#987440;margin:0 0 10px}.line{display:flex;justify-content:space-between;gap:8px;font-size:12px;padding:6px 0;color:var(--muted);border-bottom:1px solid #f0ede7}.line:last-child{border:0}.line b{color:#202a3b;text-align:right}
+footer{padding:0 20px 18px;display:flex;justify-content:space-between;color:var(--muted);font-size:11px}
+@media(max-width:650px){main{grid-template-columns:1fr;padding:13px}.side{grid-template-columns:1fr 1fr}.hero{min-height:220px;padding:22px}header{padding:15px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="logo">LIFE IN NINE</div><div class="chapter" id="chapter">UNE HISTOIRE D'AMITIÉ</div></header>
+<section class="hero"><div class="eyebrow" id="place">KINSHASA · FIN DES COURS</div><h1 id="title">Les liens</h1><p id="subtitle">Certaines rencontres commencent par une simple présentation.</p></section>
+<main>
+<section class="dialogue"><div class="speaker" id="speaker">Narrateur</div><div id="text">Man vient de terminer les cours. Son sac sur l'épaule, il pense déjà au terrain de football. Une voix familière l'interpelle derrière lui…</div><div class="choices" id="choices"><button class="choice" onclick="show(0)">Commencer l'aventure →</button></div></section>
+<aside class="side">
+<div class="panel"><h2>Man</h2><div class="line"><span>Caractère</span><b>Calme, calculateur</b></div><div class="line"><span>Passions</span><b>Voitures · Football</b></div><div class="line"><span>Style</span><b>Sportif</b></div></div>
+<div class="panel"><h2>Son entourage</h2><div class="line"><span>Aria</span><b>Meilleure amie</b></div><div class="line"><span>Yan</span><b>À rencontrer</b></div><div class="line"><span>Progression</span><b id="progress">0 %</b></div></div>
+</aside>
+</main>
+<footer><span>Prototype · Chapitre 1</span><span>Les choix façonnent l'histoire</span></footer>
+</div>
+<script>
+const scenes=[
+{c:"CHAPITRE 1 · APRÈS LES COURS",p:"KINSHASA · COUR DE L'ÉCOLE",t:"Une voix familière",s:"Narrateur",d:"Man range ses affaires. Il pense au terrain de football, puis à une voiture qu'il a remarquée sur le chemin de l'école. Une voix qu'il connaît depuis l'enfance l'interrompt.",o:[["Se retourner tranquillement.",1],["« Je sais que c'est toi, Aria. »",2]]},
+{c:"CHAPITRE 1 · APRÈS LES COURS",p:"KINSHASA · COUR DE L'ÉCOLE",t:"Toujours aussi calme",s:"Aria",d:"« Même pas un petit sursaut ? Tu es vraiment impossible ! » Aria rit. « Alors, monsieur le sportif, tu vas encore passer ton après-midi au terrain ? »",o:[["« Il faut bien entretenir mon niveau. »",3],["« Ça dépend. Tu as prévu quelque chose, petite grande amie ? »",4]]},
+{c:"CHAPITRE 1 · APRÈS LES COURS",p:"KINSHASA · COUR DE L'ÉCOLE",t:"La petite grande amie",s:"Aria",d:"« Tu m'as appelée comment ? Petite grande amie ? Je te rappelle qu'on n'a toujours pas réglé la question de qui est le plus âgé ! » Elle prend un air faussement sérieux.",o:[["« On va éviter ce débat, tu connais déjà la réponse. »",4],["« On demande à un arbitre. Au terrain ! »",3]]},
+{c:"CHAPITRE 1 · LE TERRAIN",p:"KINSHASA · TERRAIN DE FOOTBALL",t:"Le rendez-vous du ballon",s:"Narrateur",d:"Le terrain est animé. Quelques amis terminent de former les équipes. Aria secoue la tête, amusée. « Je dois retrouver une amie de ma filière. Elle devrait arriver. »",o:[["Attendre qu'Aria présente son amie.",5],["Regarder le match qui se prépare.",5]]},
+{c:"CHAPITRE 1 · LE TERRAIN",p:"KINSHASA · TERRAIN DE FOOTBALL",t:"Une présentation",s:"Aria",d:"« Man, je te présente Yan. On est dans la même filière. Yan, voici Man, mon meilleur ami depuis qu'on a quatre ans. »",o:[["« Salut Yan. Enchanté. »",6],["« Donc c'est toi l'amie dont Aria parle parfois. »",6]]},
+{c:"CHAPITRE 1 · LE TERRAIN",p:"KINSHASA · BORD DU TERRAIN",t:"Une nouvelle rencontre",s:"Yan",d:"Yan sourit. « Enchantée. Aria m'a déjà parlé de toi. » Aria regarde Man avec un petit sourire, comme si elle attendait sa réaction.",o:[["Demander à Yan ce qu'elle pense de sa filière.",7],["Lui demander si elle aime le football.",7],["Laisser Aria poursuivre la conversation.",7]]},
+{c:"CHAPITRE 1 · PREMIER ÉCHANGE",p:"KINSHASA · BORD DU TERRAIN",t:"Un point commun",s:"Narrateur",d:"La discussion continue. Man remarque que Yan a une façon de voir certaines choses qui lui semble étonnamment familière. Ce n'est que le début.",o:[["Continuer à discuter avec Yan.",8],["Proposer de rejoindre les autres pour le match.",8]]},
+{c:"FIN DU PREMIER EXTRAIT",p:"KINSHASA · TERRAIN DE FOOTBALL",t:"À suivre…",s:"Narrateur",d:"Aria vient de faire se rencontrer deux personnes qui ne se seraient peut-être jamais parlé autrement. Le reste de leur histoire se construira au fil des choix, des souvenirs et des épreuves. Fin du premier extrait.",o:[["Recommencer le chapitre.",0]]}
+];
+function show(i){const x=scenes[i];document.getElementById("chapter").textContent=x.c;document.getElementById("place").textContent=x.p;document.getElementById("title").textContent=x.t;document.getElementById("subtitle").textContent="Une histoire qui se construit au fil des rencontres.";document.getElementById("speaker").textContent=x.s;document.getElementById("text").textContent=x.d;document.getElementById("progress").textContent=Math.round((i+1)/scenes.length*100)+" %";const box=document.getElementById("choices");box.innerHTML="";x.o.forEach(([label,next])=>{const b=document.createElement("button");b.className="choice";b.textContent=label;b.onclick=()=>show(next);box.appendChild(b)})}
+</script>
+</body>
+</html>
